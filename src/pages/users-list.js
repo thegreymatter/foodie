@@ -20,6 +20,7 @@ class UsersList extends React.Component {
                     <UserCard
                     key = {user.id}
                     name={user.firstName + " " + user.lastName}
+                    searsId={user.searsId}
                     />
                 )}
             </div>

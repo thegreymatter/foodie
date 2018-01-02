@@ -17,12 +17,13 @@ const styles = {
 export default class UserCard extends React.Component {
 
     render() {
+        const imagePrefix = "http://searsboards.searsil.loc/-/get-user-image/";
 
         return (
             <Card style={styles.card}>
                 <CardMedia
                     style={styles.media}
-                    image="profileImage.jpg"
+                    image={imagePrefix + this.props.searsId}
                     title="Contemplative Reptile"
                 />
                 <CardContent>
@@ -41,4 +42,5 @@ export default class UserCard extends React.Component {
 UserCard.propTypes = {
     name: PropTypes.string,
     subText: PropTypes.string,
+    searsId: PropTypes.string,
 };
