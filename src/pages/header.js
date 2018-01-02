@@ -1,11 +1,12 @@
 import React from 'react';
+import logo from './Logo.png'
 
 export default class Header extends React.Component {
     render() {
         const style = {
             background: {
                 backgroundColor: "#737982",
-                padding: 20,
+                padding: 5,
             },
             container: {
                 flexFlow: "row",
@@ -16,6 +17,9 @@ export default class Header extends React.Component {
                 // display: "inlineBlock",
                 // width: "33%",
                 // textAlign: "center",
+            },
+            logo: {
+                height: 60,
             }
         };
 
@@ -25,16 +29,17 @@ export default class Header extends React.Component {
                 <div style={style.container}>
 
                     <span style={style.item}>
-                    LOGO
-                </span>
+                        <img src={logo} style={style.logo} alt="logo"/>
+
+                    </span>
 
                     <span style={style.item}>
-                    SEARCH BOX
-                </span>
+                        SEARCH BOX
+                    </span>
 
                     <span style={style.item}>
-                    IMAGE
-                </span>
+                        IMAGE
+                    </span>
                 </div>
             </div>
         );
