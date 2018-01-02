@@ -12,25 +12,12 @@ exports.register = functions.https.onRequest((req, res) => {
     console.log('New message from user!');
     console.log(req.body);
 
-    handleMessage(req.body.message);
+    handleMessage(req, res);
 });
 
-function start(message) {
-    const chatId = message.chat.id;
-    const text = 'Hi, I\'m Foodie! I can let you know when your food is here! To do so we need be in touch, can you please send me your phone?';
-    const options = {
-        parse_mode: 'Markdown',
-        reply_markup: {
-            keyboard: [{ text: 'Send my phone number', request_contact: true }],
-            resize_keyboard: false,
-            one_time_keyboard: false
-        }
-    };
+function handleMessage(req, res) {
+    const message = req.body.message;
 
-    bot.sendMessage(chatId, text, options);
-}
-
-function handleMessage(message) {
     switch (message.text) {
         case '/start':
             start(message);
@@ -55,4 +42,19 @@ function handleMessage(message) {
             res.status(403).send('Forbidden!');
             return;
     }
+}
+
+function start(message) {
+    const chatId = message.chat.id;
+    const text = 'Hi, I\'m Foodie! I can let you know when your food is here! To do so we need be in touch, can you please send me your phone?';
+    const options = {
+        parse_mode: 'Markdown',
+        reply_markup: {
+            keyboard: [{ text: 'Send my phone number', request_contact: true }],
+            resize_keyboard: false,
+            one_time_keyboard: false
+        }
+    };
+
+    bot.sendMessage(chatId, text, options);
 }
