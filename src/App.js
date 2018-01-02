@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import Header from './pages/header'
+import Footer from './pages/footer'
 
 class App extends Component {
     render() {
         const style={
-            backgroundColor:"#febc1d"
+            //backgroundColor:"#febc1d"
         };
 
         return (
@@ -14,6 +15,7 @@ class App extends Component {
                 {this.props.children}
                 </div>
 
+                <Footer/>
 
             </div>
         );
