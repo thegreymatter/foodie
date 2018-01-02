@@ -3,14 +3,26 @@ import PropTypes from 'prop-types';
 import Card, {CardContent, CardMedia} from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
 
+const radius = 10;
+const width = 200;
+
 const styles = {
+    div:{
+        borderRadius: 20
+
+    },
     card: {
-        maxWidth: 200,
+        maxWidth: width,
         margin: 10,
+        borderRadius: radius,
+
     },
     media: {
-        height: 200,
-        width: 200,
+        height: width,
+        width: width,
+        borderTopLeftRadius: radius,
+        borderTopRightRadius: radius,
+
     },
 };
 
@@ -20,24 +32,27 @@ export default class UserCard extends React.Component {
         const imagePrefix = "http://searsboards.searsil.loc/-/get-user-image/";
 
         return (
-            <Card
-                style={styles.card}
-                onClick={this.props.onClick}
-            >
-                <CardMedia
-                    style={styles.media}
-                    image={imagePrefix + this.props.searsId}
-                    title="Contemplative Reptile"
-                />
-                <CardContent>
-                    <Typography type="headline" component="h3">
-                        {this.props.name}
-                    </Typography>
-                    <Typography component="p">
-                        {this.props.subText}
-                    </Typography>
-                </CardContent>
-            </Card>
+            <div style={styles.div}>
+                <Card
+                    style={styles.card}
+                    onClick={this.props.onClick}
+                >
+                    <CardMedia
+                        style={styles.media}
+                        image={imagePrefix + this.props.searsId}
+                        title="Contemplative Reptile"
+                    />
+                    <CardContent>
+                        <Typography type="headline" component="h3">
+                            {this.props.name}
+                        </Typography>
+                        <Typography component="p">
+                            {this.props.subText}
+                        </Typography>
+                    </CardContent>
+                </Card>
+            </div>
+
         );
     }
 }

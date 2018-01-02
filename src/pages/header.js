@@ -8,7 +8,7 @@ class Header extends React.Component {
     render() {
         const style = {
             background: {
-                backgroundColor: "#737982",
+                backgroundColor: "#696459",
                 padding: 5,
             },
             container: {
@@ -23,6 +23,10 @@ class Header extends React.Component {
             },
             logo: {
                 height: 60,
+            },
+            searchBox: {
+                marginTop: 20,
+                width: 500
             }
         };
 
@@ -38,10 +42,11 @@ class Header extends React.Component {
 
                     <span style={style.item}>
                         <SearchBox
-                        handleChange={(value) => {
-                            this.props.dispatch(updateFilter(value))
-                            console.log(value)
-                        }}/>
+                            style={style.searchBox}
+                            hint="Search..."
+                            handleChange={(value) => {
+                                this.props.dispatch(updateFilter(value));
+                            }}/>
                     </span>
 
                     <span style={style.item}>
@@ -52,9 +57,9 @@ class Header extends React.Component {
         );
     }
 }
+
 function mapStateToProps(state) {
-    return {
-    };
+    return {};
 }
 
 

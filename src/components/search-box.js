@@ -10,6 +10,7 @@ export default class SearchBox extends React.Component {
                 style={this.props.style}
                 fullWidth={true}
                 onChange={(event) => this.props.handleChange(event.target.value)}
+                placeholder={this.props.hint}
             />
         );
     }
@@ -18,5 +19,6 @@ export default class SearchBox extends React.Component {
 SearchBox.propTypes = {
     handleChange: PropTypes.func,
     style: PropTypes.object,
+    hint: PropTypes.string,
 };
 
