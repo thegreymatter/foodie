@@ -5,10 +5,6 @@ export default (state = {}, action = {}) => {
     switch (action.type) {
         case actionTypes.RECEIVE_ORDERS:
             return action.payload;
-
-        //case LOGGED_OUT:
-         //   return {};
-
         default:
             return state
     }
@@ -28,15 +24,3 @@ export function getWaitingOrders(state) {
 function isWaitingOrder(order, now){
     return !order.notified && new Date(order.expiration) > now;
 }
-//
-// export function getNextOrganizationId(state) {
-//     const organizations = getOrganizations(state);
-//     const keys = _.keys(organizations);
-//     if (!organizations || keys.length === 0)
-//         return null;
-//     return _.max(_.map(_.keys(organizations), _.parseInt)) + 1;
-// }
-//
-// export function getOrganizationById(state, id) {
-//     return getOrganizations(state)[id];
-// }
