@@ -24,8 +24,8 @@ exports.register = functions.https.onRequest((req, res) => {
         case '/start':
             const user = {
                 id: req.body.message.from.id,
-                firstName:  req.body.message.from.firstName,
-                lastName:  req.body.message.from.lastName
+                firstName:  req.body.message.from.first_name,
+                lastName:  req.body.message.from.last_name
             };
 
             console.log('Registering user... user info: ' + JSON.stringify(user));
