@@ -1,31 +1,47 @@
 'use strict';
 
 const functions = require('firebase-functions');
-// const firebase = require('firebase');
 const admin = require('firebase-admin');
+const TelegramBot = require('node-telegram-bot-api');
 
 admin.initializeApp(functions.config().firebase);
-// firebase.initializeApp(firebaseConfig);
-//
-// const firebaseConfig = {
-//     apiKey: "AIzaSyAgz4f_lRZGVgE43U3oMc4KQFaYXkXJdyQ",
-//     authDomain: "syw-foodie.firebaseapp.com",
-//     databaseURL: "https://syw-foodie.firebaseio.com",
-//     projectId: "syw-foodie",
-//     storageBucket: "syw-foodie.appspot.com",
-//     messagingSenderId: "504115679989"
-// };
+
+const bot = new TelegramBot('522468127:AAETX_HkbExIVQ9FiJc2_kvxCDLnuz4zyoU');
 
 exports.register = functions.https.onRequest((req, res) => {
     console.log('New message from user!');
     console.log(req.body);
 
-    switch (req.body.message.text) {
+    handleMessage(message);
+});
+
+function start(message) {
+    const chatId = message.chat.id;
+    const text = 'Hi, I\'m Foodie! I can let you know when your food is here! To do so we need be in touch, can you please send me your phone?';
+    const options = {
+        parse_mode: 'Markdown',
+        reply_markup: {
+            keyboard: [{ text: 'Send my phone number', request_contact: true }],
+            resize_keyboard: false,
+            one_time_keyboard: false
+        }
+    };
+
+    bot.sendMessage(chatId, text, options);
+}
+
+function handleMessage(message) {
+    switch (message.text) {
         case '/start':
+            start(message);
+            res.status(200).send('ok');
+            return;
+            
+        case '/contact':
             const user = {
-                id: req.body.message.from.id,
-                firstName:  req.body.message.from.first_name,
-                lastName:  req.body.message.from.last_name
+                id: message.from.id,
+                firstName: message.from.first_name,
+                lastName: message.from.last_name
             };
 
             console.log('Registering user... user info: ' + JSON.stringify(user));
@@ -39,4 +55,4 @@ exports.register = functions.https.onRequest((req, res) => {
             res.status(403).send('Forbidden!');
             return;
     }
-});
+}
