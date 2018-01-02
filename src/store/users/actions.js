@@ -1,4 +1,8 @@
 import * as actionTypes from './action-types';
+import _ from 'lodash';
+import {getEmployees} from "../employees/reducer";
+import {getUsers} from "./reducer";
+import {sendDataToDatabase} from "../firebase/actions";
 
 export function receiveUsers(users) {
     return {
@@ -7,3 +11,33 @@ export function receiveUsers(users) {
     };
 }
 
+
+export function validateUsers() {
+    return async function validateUsers(dispatch, getState) {
+        try {
+
+            const employees = getEmployees(getState());
+            if (_.isEmpty(employees))
+                return;
+
+            const users = getUsers(getState());
+            console.log("here")
+
+            _.map(users, user => {
+                if (!user.name) {
+                    const employee = employees[user.phone];
+                    if (!employee) {
+                        console.error("No such employee with phone " + user.phone);
+                        return;
+                    }
+
+                    user.name = employee.name;
+                    user.searsId = employee.searsId;
+
+                    dispatch(sendDataToDatabase("/users/" + user.id, user));
+                }
+            });
+        } catch (err) {
+        }
+    }
+}

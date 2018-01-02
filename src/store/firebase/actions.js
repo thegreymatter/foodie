@@ -1,7 +1,8 @@
 // import * as actionTypes from './action-types';
-import {receiveUsers} from '../users/actions'
+import {receiveUsers, validateUsers} from '../users/actions'
 import * as firebase from 'firebase';
 import {receiveOrders} from "../orders/actions";
+import {receiveEmployees} from "../employees/actions";
 // import * as reducer from './reducer';
 
 const firebaseConfig = {
@@ -17,8 +18,9 @@ export function initFirebase() {
     return async function signInRequest(dispatch) {
 
        await firebase.initializeApp(firebaseConfig);
-        dispatch(fetchData('users', receiveUsers));
         dispatch(fetchData('orders', receiveOrders));
+        await dispatch(fetchData('users', receiveUsers));
+        await dispatch(fetchData('employees', receiveEmployees));
 
         // firebase.auth().onAuthStateChanged(function (user) {
         //     if (user) {

@@ -22,11 +22,14 @@ const styles = {
         width: width,
         borderTopLeftRadius: radius,
         borderTopRightRadius: radius,
-
     },
+    name:{
+        fontSize: 18,
+    }
 };
 
 export default class UserCard extends React.Component {
+
 
     render() {
         const imagePrefix = "http://searsboards.searsil.loc/-/get-user-image/";
@@ -40,15 +43,11 @@ export default class UserCard extends React.Component {
                     <CardMedia
                         style={styles.media}
                         image={imagePrefix + this.props.searsId}
-                        title="Contemplative Reptile"
                     />
                     <CardContent>
-                        <Typography type="headline" component="h3">
+                        <div style={styles.name}>
                             {this.props.name}
-                        </Typography>
-                        <Typography component="p">
-                            {this.props.subText}
-                        </Typography>
+                        </div>
                     </CardContent>
                 </Card>
             </div>

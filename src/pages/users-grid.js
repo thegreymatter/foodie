@@ -4,6 +4,7 @@ import _ from 'lodash';
 import {getWaitingUsers} from "../store/users/reducer";
 import UserCard from "../components/user-card";
 import SnackBar from "../components/snack-bar";
+import {validateUsers} from "../store/users/actions";
 
 const initState = {
     snackBarOpen: false,
@@ -39,12 +40,14 @@ class UserGrid extends React.Component {
             }
         };
 
+        this.props.dispatch(validateUsers());
+
         return (
             <div style={styles.container}>
                 {_.map(this.props.users, user =>
                     <UserCard
                         key={user.id}
-                        name={user.firstName + " " + user.lastName}
+                        name={user.name}
                         searsId={user.searsId}
                         onClick={() => this.onUserClick(user)}
                     />
