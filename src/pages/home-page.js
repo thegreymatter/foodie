@@ -1,5 +1,5 @@
 import React from 'react';
-import UsersList from './users-list';
+import UserGrid from './users-grid';
 
 export default class HomePage extends React.Component {
     render() {
@@ -11,7 +11,7 @@ export default class HomePage extends React.Component {
 
         return (
             <div style={styles.container}>
-                <UsersList/>
+                <UserGrid/>
             </div>
         );
     }

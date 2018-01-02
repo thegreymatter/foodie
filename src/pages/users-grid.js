@@ -10,7 +10,7 @@ const initState = {
     snackBarMessage: "",
 };
 
-class UsersList extends React.Component {
+class UserGrid extends React.Component {
 
     constructor() {
         super();
@@ -68,4 +68,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(UsersList);
+export default connect(mapStateToProps)(UserGrid);
