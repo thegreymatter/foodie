@@ -20,7 +20,10 @@ export default class UserCard extends React.Component {
         const imagePrefix = "http://searsboards.searsil.loc/-/get-user-image/";
 
         return (
-            <Card style={styles.card}>
+            <Card
+                style={styles.card}
+                onClick={this.props.onClick}
+            >
                 <CardMedia
                     style={styles.media}
                     image={imagePrefix + this.props.searsId}
@@ -43,4 +46,5 @@ UserCard.propTypes = {
     name: PropTypes.string,
     subText: PropTypes.string,
     searsId: PropTypes.string,
+    onClick: PropTypes.func,
 };
