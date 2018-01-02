@@ -5,13 +5,10 @@ import {getUsers} from "../store/users/reducer";
 
 class UsersList extends React.Component {
 
-
     render() {
-        console.log(this.props.users);
-
         return (
             <div>
-                {_.map(this.props.users, user => <div>
+                {_.map(this.props.users, user => <div key={user}>
                     welcome {user}
                 </div>)}
             </div>
