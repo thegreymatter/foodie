@@ -2,7 +2,7 @@ import React from 'react';
 import BottomNavigationSection, {BottomNavigationButton} from 'material-ui/BottomNavigation';
 import FoodIcon from 'material-ui-icons/Restaurant';
 import PackagesIcon from 'material-ui-icons/LocalPostOffice';
-import InterviewIcon from 'material-ui-icons/Pets';
+import InterviewIcon from 'material-ui-icons/SupervisorAccount';
 
 
 export default class BottomNavigation extends React.Component {
