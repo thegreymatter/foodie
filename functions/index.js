@@ -1,16 +1,20 @@
 'use strict';
 
 const functions = require('firebase-functions');
-const firebase = require('firebase');
+// const firebase = require('firebase');
+const admin = require('firebase-admin');
 
-const firebaseConfig = {
-    apiKey: "AIzaSyAgz4f_lRZGVgE43U3oMc4KQFaYXkXJdyQ",
-    authDomain: "syw-foodie.firebaseapp.com",
-    databaseURL: "https://syw-foodie.firebaseio.com",
-    projectId: "syw-foodie",
-    storageBucket: "syw-foodie.appspot.com",
-    messagingSenderId: "504115679989"
-};
+admin.initializeApp(functions.config().firebase);
+// firebase.initializeApp(firebaseConfig);
+//
+// const firebaseConfig = {
+//     apiKey: "AIzaSyAgz4f_lRZGVgE43U3oMc4KQFaYXkXJdyQ",
+//     authDomain: "syw-foodie.firebaseapp.com",
+//     databaseURL: "https://syw-foodie.firebaseio.com",
+//     projectId: "syw-foodie",
+//     storageBucket: "syw-foodie.appspot.com",
+//     messagingSenderId: "504115679989"
+// };
 
 exports.register = functions.https.onRequest((req, res) => {
     console.log('New message from user!');
@@ -18,18 +22,15 @@ exports.register = functions.https.onRequest((req, res) => {
 
     switch (req.body.message.text) {
         case '/start':
-
-            firebase.initializeApp(firebaseConfig);
-
             const user = {
                 id: req.body.message.from.id,
-                firstName:  req.body.message.from.firstName,
-                lastName:  req.body.message.from.lastName
+                firstName:  req.body.message.from.first_name,
+                lastName:  req.body.message.from.last_name
             };
 
-            console.log('Registering user... user info: ' + user.json());
+            console.log('Registering user... user info: ' + JSON.stringify(user));
 
-            firebase.database().ref('/users/' + user.id).set(user);
+            admin.database().ref('/users/' + user.id).set(user);
 
             res.status(200).send('ok');
             return;
