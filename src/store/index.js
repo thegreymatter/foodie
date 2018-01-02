@@ -6,6 +6,7 @@ import {combineReducers} from 'redux';
 import firebase from './firebase/reducer';
 import users from './users/reducer'
 import orders from './orders/reducer'
+import filter from './filter/reducer'
 
 import {initFirebase} from "./firebase/actions";
 
@@ -13,6 +14,7 @@ const combinedReducers = combineReducers({
     users,
     orders,
     firebase,
+    filter,
 });
 
 const store = createStore(

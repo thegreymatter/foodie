@@ -1,6 +1,7 @@
 import * as actionTypes from './action-types';
 import _ from 'lodash';
 import {getWaitingOrders} from "../orders/reducer";
+import {filterUsers} from "../filter/reducer";
 
 export default (state = {}, action = {}) => {
     switch (action.type) {
@@ -23,6 +24,6 @@ export function getWaitingUsers(state) {
 
     const waitingUsers = _.filter(users, user => _.some(waitingOrders, order => order.userId === user.id));
 
-    return waitingUsers;
+    return filterUsers(state, waitingUsers);
 
 }

@@ -1,7 +1,10 @@
 import React from 'react';
 import logo from './Logo.png'
+import SearchBox from "../components/search-box";
+import {connect} from 'react-redux';
+import {updateFilter} from "../store/filter/actions";
 
-export default class Header extends React.Component {
+class Header extends React.Component {
     render() {
         const style = {
             background: {
@@ -34,7 +37,11 @@ export default class Header extends React.Component {
                     </span>
 
                     <span style={style.item}>
-                        SEARCH BOX
+                        <SearchBox
+                        handleChange={(value) => {
+                            this.props.dispatch(updateFilter(value))
+                            console.log(value)
+                        }}/>
                     </span>
 
                     <span style={style.item}>
@@ -45,3 +52,11 @@ export default class Header extends React.Component {
         );
     }
 }
+function mapStateToProps(state) {
+    return {
+    };
+}
+
+
+export default connect(mapStateToProps)(Header);
+
