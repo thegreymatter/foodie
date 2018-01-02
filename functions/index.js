@@ -18,30 +18,19 @@ exports.register = functions.https.onRequest((req, res) => {
 function handleMessage(req, res) {
     const message = req.body.message;
 
-    switch (message.text) {
-        case '/start':
-            start(message);
-            res.status(200).send('ok');
-            return;
-            
-        case '/contact':
-            const user = {
-                id: message.from.id,
-                firstName: message.from.first_name,
-                lastName: message.from.last_name
-            };
-
-            console.log('Registering user... user info: ' + JSON.stringify(user));
-
-            admin.database().ref('/users/' + user.id).set(user);
-
-            res.status(200).send('ok');
-            return;
-
-        default:
-            res.status(403).send('Forbidden!');
-            return;
+    if (message.text === '/start') {
+        start(message);
+        res.status(200).send('ok');
+        return;
     }
+
+    if (message.type === 'contact_message') {
+        register(message);
+        res.status(200).send('ok');
+        return;
+    }
+
+    res.status(403).send('Forbidden!');
 }
 
 function start(message) {
@@ -57,4 +46,31 @@ function start(message) {
     };
 
     bot.sendMessage(chatId, text, options);
+}
+
+function register(message) {
+    const chatId = message.chat.id;
+    const phone = extractPhoneNumber(message);
+
+    const user = {
+        id: message.from.id,
+        phone: phone,
+        chatId: chatId
+    };
+
+    admin.database().ref('/employees/' + phone).once('value', (data) => {
+        user.searsId = data.searsId;
+        user.name = data.name;
+    });
+
+    saveUser(user);
+    bot.sendMessage(chatId, 'Thanks for signing up!');
+}
+
+function extractPhoneNumber(message) {
+    return '0525604050';
+}
+
+function saveUser(user) {
+    admin.database().ref('/users/' + user.id).set(user);
 }
