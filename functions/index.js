@@ -1,16 +1,16 @@
 'use strict';
 
 const functions = require('firebase-functions');
-// const firebase = require('firebase');
-//
-// const firebaseConfig = {
-//     apiKey: "AIzaSyAgz4f_lRZGVgE43U3oMc4KQFaYXkXJdyQ",
-//     authDomain: "syw-foodie.firebaseapp.com",
-//     databaseURL: "https://syw-foodie.firebaseio.com",
-//     projectId: "syw-foodie",
-//     storageBucket: "syw-foodie.appspot.com",
-//     messagingSenderId: "504115679989"
-// };
+const firebase = require('firebase');
+
+const firebaseConfig = {
+    apiKey: "AIzaSyAgz4f_lRZGVgE43U3oMc4KQFaYXkXJdyQ",
+    authDomain: "syw-foodie.firebaseapp.com",
+    databaseURL: "https://syw-foodie.firebaseio.com",
+    projectId: "syw-foodie",
+    storageBucket: "syw-foodie.appspot.com",
+    messagingSenderId: "504115679989"
+};
 
 exports.register = functions.https.onRequest((req, res) => {
     console.log('New message from user!');
