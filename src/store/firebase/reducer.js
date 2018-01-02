@@ -1,15 +1,15 @@
 // import * as actionTypes from './action-types';
 import _ from 'lodash';
-import Immutable from 'seamless-immutable';
+// import Immutable from 'seamless-immutable';
 // import {getOrders} from "../orders/selectors";
 import {getUsers} from "../users/reducer";
 
-const initialState = Immutable({
+const initialState = {
     loggedIn: undefined,
     userId: undefined,
     displayName: "",
     photoURL: "",
-});
+};
 
 export default function (state = initialState, action = {}) {
     switch (action.type) {
