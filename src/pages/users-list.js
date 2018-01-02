@@ -7,9 +7,12 @@ import UserCard from "../components/user-card";
 class UsersList extends React.Component {
 
     render() {
-        const styles={
-            container:{
+        const styles = {
+            container: {
                 display: "flex",
+                textAlign: "center",
+                justifyContent: "space-evenly",
+                flexWrap: "wrap",
             }
         };
 
@@ -18,9 +21,9 @@ class UsersList extends React.Component {
             <div style={styles.container}>
                 {_.map(this.props.users, user =>
                     <UserCard
-                    key = {user.id}
-                    name={user.firstName + " " + user.lastName}
-                    searsId={user.searsId}
+                        key={user.id}
+                        name={user.firstName + " " + user.lastName}
+                        searsId={user.searsId}
                     />
                 )}
             </div>
