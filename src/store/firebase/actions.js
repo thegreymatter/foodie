@@ -1,6 +1,7 @@
 // import * as actionTypes from './action-types';
 import {receiveUsers} from '../users/actions'
 import * as firebase from 'firebase';
+import {receiveOrders} from "../orders/actions";
 // import * as reducer from './reducer';
 
 const firebaseConfig = {
@@ -17,6 +18,7 @@ export function initFirebase() {
 
        await firebase.initializeApp(firebaseConfig);
         dispatch(fetchData('users', receiveUsers));
+        dispatch(fetchData('orders', receiveOrders));
 
         // firebase.auth().onAuthStateChanged(function (user) {
         //     if (user) {

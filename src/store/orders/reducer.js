@@ -1,10 +1,9 @@
 import * as actionTypes from './action-types';
 import _ from 'lodash';
-import {getWaitingOrders} from "../orders/reducer";
 
 export default (state = {}, action = {}) => {
     switch (action.type) {
-        case actionTypes.RECEIVE_USERS:
+        case actionTypes.RECEIVE_ORDERS:
             return action.payload;
 
         //case LOGGED_OUT:
@@ -16,18 +15,18 @@ export default (state = {}, action = {}) => {
 }
 
 // Selectors:
-export function getUsers(state) {
-    return state.users;
+export function getOrders(state) {
+    return state.orders;
 }
 
-export function getWaitingUsers(state) {
-    const users = getUsers(state);
-    const waitingOrders = getWaitingOrders(state);
+export function getWaitingOrders(state) {
+    const orders = getOrders(state);
+    const now = new Date();
+    return _.filter(orders, order => isWaitingOrder(order, now));
+}
 
-    const waitingUsers = _.filter(users, user => _.some(waitingOrders, order => order.userId === user.id));
-
-    return waitingUsers;
-
+function isWaitingOrder(order, now){
+    return !order.notified && new Date(order.expiration) > now;
 }
 //
 // export function getNextOrganizationId(state) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
-import {getUsers} from "../store/users/reducer";
+import {getWaitingUsers} from "../store/users/reducer";
 import UserCard from "../components/user-card";
 import SnackBar from "../components/snack-bar";
 
@@ -64,7 +64,7 @@ class UserGrid extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        users: getUsers(state),
+        users: getWaitingUsers(state),
     };
 }
 
