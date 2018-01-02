@@ -21,7 +21,6 @@ export function validateUsers() {
                 return;
 
             const users = getUsers(getState());
-            console.log("here")
 
             _.map(users, user => {
                 if (!user.name) {

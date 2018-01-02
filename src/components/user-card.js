@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card, {CardContent, CardMedia} from 'material-ui/Card';
-import Typography from 'material-ui/Typography';
 
 const radius = 10;
 const width = 200;

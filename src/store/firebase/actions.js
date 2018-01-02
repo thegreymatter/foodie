@@ -1,9 +1,7 @@
-// import * as actionTypes from './action-types';
-import {receiveUsers, validateUsers} from '../users/actions'
+import {receiveUsers} from '../users/actions'
 import * as firebase from 'firebase';
 import {receiveOrders} from "../orders/actions";
 import {receiveEmployees} from "../employees/actions";
-// import * as reducer from './reducer';
 
 const firebaseConfig = {
     apiKey: "AIzaSyAgz4f_lRZGVgE43U3oMc4KQFaYXkXJdyQ",
