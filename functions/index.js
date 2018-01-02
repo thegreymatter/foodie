@@ -12,7 +12,7 @@ exports.register = functions.https.onRequest((req, res) => {
     console.log('New message from user!');
     console.log(req.body);
 
-    handleMessage(message);
+    handleMessage(req.body.message);
 });
 
 function start(message) {
