@@ -12,17 +12,30 @@ const firebaseConfig = {
     messagingSenderId: "504115679989"
 };
 
-exports.register = functions.https.onRequest(async (req, res) => {
-    console.log(req);
+exports.register = functions.https.onRequest((req, res) => {
+    console.log('New message from user!');
+    console.log(req.body);
 
-    await firebase.initializeApp(firebaseConfig);
+    switch (req.body.message.text) {
+        case '/start':
 
-    const user = {
-        id: 1,
-        name: 'Leeran'
-    };
+            firebase.initializeApp(firebaseConfig);
 
-    firebase.database().ref($`/users/{user.id}`).set(user);
+            const user = {
+                id: req.body.message.from.id,
+                firstName:  req.body.message.from.firstName,
+                lastName:  req.body.message.from.lastName
+            };
 
-    res.status(200).send('ok');
+            console.log('Registering user... user info: ' + user.json());
+
+            firebase.database().ref('/users/' + user.id).set(user);
+
+            res.status(200).send('ok');
+            return;
+
+        default:
+            res.status(403).send('Forbidden!');
+            return;
+    }
 });
