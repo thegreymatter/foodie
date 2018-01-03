@@ -19,7 +19,7 @@ const initState = {
 const radius = 10;
 const width = 200;
 const disabledColor = "#DADADA";
-const notifiedColor = "#4cc912";
+const notifiedColor = "#4eb61e";
 
 class UserCard extends React.Component {
 
