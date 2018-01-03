@@ -24,6 +24,7 @@ class UserGrid extends React.Component {
 
 
     onUserClick(user) {
+        //TODO report click to Telegram
         this.setState({
             snackBarOpen: true,
             snackBarMessage: "Pressed " + user.name,
