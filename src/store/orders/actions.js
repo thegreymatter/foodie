@@ -28,6 +28,7 @@ export function markOrdersAsNotified(user) {
                 if (!order.notified) {
                     sendDataToDatabase("/orders/" + order.key + "/notified", true);
                     sendDataToDatabase("/orders/" + order.key + "/expiration", expiration.toJSON());
+                    sendDataToDatabase("/orders/" + order.key + "/arrived", new Date().toJSON());
                 }
 
             }

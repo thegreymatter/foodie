@@ -24,7 +24,12 @@ export function validateUsers() {
 
             _.map(users, user => {
                 if (!user.name) {
-                    const employee = employees[user.phone];
+                    let employee = employees[user.phone];
+                    if (user.phone.indexOf('+') !== -1) {
+                        employee = employees[user.phone.substr(1)];
+                        console.log(user);
+                        console.log(employee)
+                    }
                     if (!employee) {
                         console.error("No such employee with phone " + user.phone);
                         return;
