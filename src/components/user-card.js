@@ -43,7 +43,7 @@ class UserCard extends React.Component {
             return;
         }
 
-        await fetch(notifyUrl + this.props.user.id, {
+        fetch(notifyUrl + this.props.user.id, {
             mode: 'no-cors',
 
             method: 'post',

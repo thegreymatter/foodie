@@ -23,10 +23,6 @@ class Header extends React.Component {
             },
             logo: {
                 height: 60,
-            },
-            searchBox: {
-                marginTop: 20,
-                width: 500
             }
         };
 
@@ -42,7 +38,6 @@ class Header extends React.Component {
 
                     <span style={style.item}>
                         <SearchBox
-                            style={style.searchBox}
                             hint="Search..."
                             handleChange={(value) => {
                                 this.props.dispatch(updateFilter(value));
