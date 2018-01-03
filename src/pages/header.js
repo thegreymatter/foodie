@@ -12,11 +12,12 @@ class Header extends React.Component {
                 padding: 5,
             },
             container: {
-                flexFlow: "row",
+                // flexFlow: "row",
                 display: "flex",
-                justifyContent: "space-around"
+                // justifyContent: "space-around"
             },
             item: {
+                marginLeft: 30,
                 // display: "inlineBlock",
                 // width: "33%",
                 // textAlign: "center",
@@ -42,10 +43,6 @@ class Header extends React.Component {
                             handleChange={(value) => {
                                 this.props.dispatch(updateFilter(value));
                             }}/>
-                    </span>
-
-                    <span style={style.item}>
-                        IMAGE
                     </span>
                 </div>
             </div>
