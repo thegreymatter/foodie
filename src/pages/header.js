@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './Logo.png'
 import SearchBox from "../components/search-box";
 import {connect} from 'react-redux';
-import {updateFilter} from "../store/filter/actions";
+import {updateFilter} from "../store/appData/actions";
 import {getDeliveredOrdersCount} from "../store/orders/reducer";
 
 class Header extends React.Component {
@@ -55,7 +55,7 @@ class Header extends React.Component {
                     </span>
 
                     <span style={style.delivered}>
-                        {this.props.deliveredOrdersCount.length} Meals Delivered!
+                        {this.props.deliveredOrdersCount.length} Orders Delivered!
                     </span>
                 </div>
             </div>

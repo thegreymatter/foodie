@@ -3,8 +3,6 @@ import {Router, Route} from 'react-router';
 import {createHashHistory} from 'history';
 
 import App from './App'
-// import {isLoggedIn} from "./store/firebase/reducer";
-// import connect from "react-redux/es/connect/connect";
 import HomePage from "./pages/home-page";
 
 const history = createHashHistory();
@@ -16,16 +14,15 @@ class Root extends React.Component {
         return (
             <Router history={history}>
                 <App>
-                    <Route exact path="/" component={HomePage}/>
-                    {/*<Route path="/form" component={LectureForm}/>*/}
-                    {/*<Route path="/org" component={OrganizationPage}/>*/}
-                    {/*<Route path="/followup" component={FollowUpPageTitle}/>*/}
-                    {/*<Route path="/actionRequired" component={ActionRequiredPage}/>*/}
-                    {/*<Route path="/payment" component={PaymentPage}/>*/}
-                    {/*<Route path="/expectedIncome" component={ExpectedIncomePage}/>*/}
-                    {/*<Route path="/futureLectures" component={FutureLecturesPage}/>*/}
-                    {/*<Route path="/allOrders" component={AllOrdersPage}/>*/}
-                    {/*<Route path="/print" component={PrintOrderPage}/>*/}
+                    <Route exact path="/" component={(props) =>
+                        <HomePage {...props}/>
+                    }/>
+                    <Route exact path="/three" component={(props) =>
+                        <HomePage {...props} floor={3}/>
+                    }/>
+                    <Route exact path="/five" component={(props) =>
+                        <HomePage {...props} floor={5}/>
+                    }/>
                 </App>
             </Router>
         )

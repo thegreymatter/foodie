@@ -7,3 +7,10 @@ export function updateFilter(newFilter) {
     };
 }
 
+export function updateFloor(newFloor) {
+    return {
+        type: actionTypes.UPDATE_FLOOR,
+        payload: newFloor,
+    };
+}
+

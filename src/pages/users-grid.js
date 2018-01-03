@@ -5,7 +5,7 @@ import {getUsers} from "../store/users/reducer";
 import UserCard from "../components/user-card";
 import {validateUsers} from "../store/users/actions";
 import {getOrders, getWaitingOrders} from "../store/orders/reducer";
-import {getFilter} from "../store/filter/reducer";
+import {getFilter} from "../store/appData/reducer";
 
 class UserGrid extends React.Component {
 
