@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "firebase": "^4.8.1",
+    "fireworks": "^2.1.1",
     "history": "^4.7.2",
     "lodash": "^4.17.4",
     "material-ui": "^1.0.0-beta.26",

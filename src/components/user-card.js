@@ -8,6 +8,7 @@ import {connect} from "react-redux";
 import {getWaitingOrdersByUserId} from "../store/orders/reducer";
 import SnackBar from "./snack-bar";
 import {getFloor} from "../store/appData/reducer";
+import fireworks from "fireworks";
 
 const notifyUrl = "https://foodie-telegram-bot.herokuapp.com/notify?userId=";
 
@@ -38,13 +39,11 @@ class UserCard extends React.Component {
     }
 
     async onUserClick() {
-        if (this.wasNotified.bind(this)()) {
-            this.setState({
-                snackBarOpen: true,
-                snackBarMessage: "Pressed " + this.props.user.name,
-            });
-            return;
-        }
+        fireworks({
+            x: window.innerWidth / 2,
+            y: window.innerHeight / 2,
+            colors: ["#cc3333", "#4CAF50", "#81C784"]
+        });
 
         console.log(notifyUrl + this.props.user.id + "&floor=" + this.props.floor);
         fetch(notifyUrl + this.props.user.id + "&floor=" + this.props.floor, {
@@ -60,10 +59,7 @@ class UserCard extends React.Component {
 
         this.props.dispatch(markOrdersAsNotified(this.props.user));
 
-        this.setState({
-            snackBarOpen: true,
-            snackBarMessage: "Pressed " + this.props.user.name,
-        });
+
     }
 
     render() {
