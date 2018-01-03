@@ -18,28 +18,6 @@ const initState = {
 const radius = 10;
 const width = 200;
 
-const styles = {
-    div: {
-        borderRadius: 20
-
-    },
-    card: {
-        maxWidth: width,
-        margin: 10,
-        borderRadius: radius,
-
-    },
-    media: {
-        height: width,
-        width: width,
-        borderTopLeftRadius: radius,
-        borderTopRightRadius: radius,
-    },
-    name: {
-        fontSize: 18,
-    }
-};
-
 class UserCard extends React.Component {
 
 
@@ -52,9 +30,12 @@ class UserCard extends React.Component {
         this.setState(initState);
     };
 
+    wasNotified(){
+        return _.some(this.props.usersWaitingOrders, order => order.notified === true)
+    }
 
     async onUserClick() {
-        if (_.some(this.props.usersWaitingOrders, order => order.notified === true)) {
+        if (this.wasNotified.bind(this)()) {
             this.setState({
                 snackBarOpen: true,
                 snackBarMessage: "Pressed " + this.props.user.name,
@@ -74,9 +55,38 @@ class UserCard extends React.Component {
         });
 
         this.props.dispatch(markOrdersAsNotified(this.props.user));
+
+        this.setState({
+            snackBarOpen: true,
+            snackBarMessage: "Pressed " + this.props.user.name,
+        });
     }
 
     render() {
+
+        const styles = {
+            div: {
+                borderRadius: 20
+
+            },
+            card: {
+                maxWidth: width,
+                margin: 10,
+                borderRadius: radius,
+                backgroundColor: this.props.user.waiting ? (this.wasNotified.bind(this)() ? "red" : "white" ): "#ABABAB"
+            },
+            media: {
+                height: width,
+                width: width,
+                borderTopLeftRadius: radius,
+                borderTopRightRadius: radius,
+            },
+            name: {
+                fontSize: 18,
+            }
+        };
+
+
         const imagePrefix = "http://searsboards.searsil.loc/-/get-user-image/";
 
         return (
@@ -89,7 +99,7 @@ class UserCard extends React.Component {
                         style={styles.media}
                         image={imagePrefix + this.props.user.searsId}
                     />
-                    <CardContent>
+                    <CardContent >
                         <div style={styles.name}>
                             {this.props.user.name}
                         </div>

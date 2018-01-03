@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
-import {getWaitingUsers} from "../store/users/reducer";
+import {getUsersToDisplay} from "../store/users/reducer";
 import UserCard from "../components/user-card";
 import {validateUsers} from "../store/users/actions";
 
@@ -38,7 +38,7 @@ class UserGrid extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        users: getWaitingUsers(state),
+        users: getUsersToDisplay(state),
     };
 }
 

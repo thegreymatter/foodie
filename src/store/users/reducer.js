@@ -18,7 +18,7 @@ export function getUsers(state) {
     return state.users;
 }
 
-export function getWaitingUsers(state) {
+export function getUsersToDisplay(state) {
     const users = getUsers(state);
     const waitingOrders = getWaitingOrders(state);
 
@@ -27,8 +27,18 @@ export function getWaitingUsers(state) {
     const filter = getFilter(state);
     if (filter === "") { //No filter
         result = _.filter(users, user => _.some(waitingOrders, order => order.userId === user.id));
-    } else {
+
+        //Mark waiting users
+        _.map(result, user => {
+            user.waiting = true;
+        });
+    } else { //Has filter - search in all users
         result = filterUsers(state, users);
+
+        //Mark waiting users
+        _.map(result, user => {
+            user.waiting = _.some(waitingOrders, order => order.userId === user.id);
+        });
     }
 
     return _.sortBy(result, user => user.name);
