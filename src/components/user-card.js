@@ -7,6 +7,7 @@ import _ from 'lodash';
 import {connect} from "react-redux";
 import {getWaitingOrdersByUserId} from "../store/orders/reducer";
 import SnackBar from "./snack-bar";
+import {getFloor} from "../store/appData/reducer";
 
 const notifyUrl = "https://foodie-telegram-bot.herokuapp.com/notify?userId=";
 
@@ -30,7 +31,7 @@ class UserCard extends React.Component {
         this.setState(initState);
     };
 
-    wasNotified(){
+    wasNotified() {
         return _.some(this.props.usersWaitingOrders, order => order.notified === true)
     }
 
@@ -43,7 +44,8 @@ class UserCard extends React.Component {
             return;
         }
 
-        fetch(notifyUrl + this.props.user.id, {
+        console.log(notifyUrl + this.props.user.id + "&floor=" + this.props.floor);
+        fetch(notifyUrl + this.props.user.id + "&floor=" + this.props.floor, {
             mode: 'no-cors',
 
             method: 'post',
@@ -73,7 +75,7 @@ class UserCard extends React.Component {
                 maxWidth: width,
                 margin: 10,
                 borderRadius: radius,
-                backgroundColor: this.props.user.waiting ? (this.wasNotified.bind(this)() ? "#febc1d" : "white" ): "#DADADA"
+                backgroundColor: this.props.user.waiting ? (this.wasNotified.bind(this)() ? "#febc1d" : "white") : "#DADADA"
             },
             media: {
                 height: width,
@@ -99,7 +101,7 @@ class UserCard extends React.Component {
                         style={styles.media}
                         image={imagePrefix + this.props.user.searsId}
                     />
-                    <CardContent >
+                    <CardContent>
                         <div style={styles.name}>
                             {this.props.user.name}
                         </div>
@@ -130,6 +132,7 @@ function mapStateToProps(state, ownProps) {
     return {
         user: ownProps.user,
         usersWaitingOrders: getWaitingOrdersByUserId(state, ownProps.user.id),
+        floor: getFloor(state),
     };
 }
 
