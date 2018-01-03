@@ -4,19 +4,12 @@ import Footer from './pages/footer'
 
 class App extends Component {
     render() {
-        const style={
-            //backgroundColor:"#febc1d"
-        };
-
         return (
             <div>
                 <Header/>
-                <div style={style}>
                 {this.props.children}
-                </div>
 
                 <Footer/>
-
             </div>
         );
     }

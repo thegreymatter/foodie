@@ -6,12 +6,13 @@ import {updateFilter} from "../store/appData/actions";
 import {getDeliveredOrdersCount} from "../store/orders/reducer";
 import {getFloor} from "../store/appData/reducer";
 import {withRouter} from "react-router";
+import Color from "../colors";
 
 class Header extends React.Component {
     render() {
         const style = {
             background: {
-                backgroundColor: "#515151",
+                backgroundColor: Color.header,
                 padding: 5,
             },
             container: {
@@ -30,7 +31,7 @@ class Header extends React.Component {
             delivered: {
                 marginLeft: 30,
                 marginTop: 15,
-                color: "#febc1d",
+                color: Color.counter,
                 fontSize: 30,
                 textShadow: "2px 2px #000000"
             }

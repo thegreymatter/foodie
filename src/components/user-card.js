@@ -8,12 +8,11 @@ import {connect} from "react-redux";
 import {getWaitingOrdersByUserId} from "../store/orders/reducer";
 import {getFloor} from "../store/appData/reducer";
 import fireworks from "fireworks";
+import Colors from "../colors";
 
 const notifyUrl = "https://foodie-telegram-bot.herokuapp.com/notify?userId=";
 const radius = 10;
 const imageSize = 200;
-const disabledColor = "#DADADA";
-const notifiedColor = "#4eb61e";
 
 class UserCard extends React.Component {
 
@@ -25,7 +24,7 @@ class UserCard extends React.Component {
         fireworks({
             x: window.innerWidth / 2,
             y: window.innerHeight / 2,
-            colors: ["#cc3333", "#4CAF50", "#81C784"]
+            colors: [Colors.notified, Colors.counter, Colors.firework1]
         });
 
         console.log(notifyUrl + this.props.user.id + "&floor=" + this.props.floor);
@@ -56,7 +55,7 @@ class UserCard extends React.Component {
                 maxWidth: imageSize,
                 margin: 10,
                 borderRadius: radius,
-                backgroundColor: this.props.user.waiting ? (this.wasNotified.bind(this)() ? notifiedColor : "white") : disabledColor
+                backgroundColor: this.props.user.waiting ? (this.wasNotified.bind(this)() ? Colors.notified : Colors.white) : Colors.notWaiting
             },
             media: {
                 height: imageSize,
