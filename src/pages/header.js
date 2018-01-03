@@ -3,6 +3,7 @@ import logo from './Logo.png'
 import SearchBox from "../components/search-box";
 import {connect} from 'react-redux';
 import {updateFilter} from "../store/filter/actions";
+import {getDeliveredOrdersCount, getOrders} from "../store/orders/reducer";
 
 class Header extends React.Component {
     render() {
@@ -24,8 +25,16 @@ class Header extends React.Component {
             },
             logo: {
                 height: 60,
+            },
+            delivered:{
+                marginLeft: 30,
+                marginTop: 15,
+                color: "#febc1d",
+                fontSize: 30,
+                textShadow: "2px 2px #000000"
             }
         };
+        console.log(this.props.orders);
 
         return (
             <div style={style.background}>
@@ -44,6 +53,10 @@ class Header extends React.Component {
                                 this.props.dispatch(updateFilter(value));
                             }}/>
                     </span>
+
+                    <span style={style.delivered}>
+                        {this.props.deliveredOrdersCount.length} Meals Delivered!
+                    </span>
                 </div>
             </div>
         );
@@ -51,7 +64,9 @@ class Header extends React.Component {
 }
 
 function mapStateToProps(state) {
-    return {};
+    return {
+        deliveredOrdersCount: getDeliveredOrdersCount(state),
+    };
 }
 
 
