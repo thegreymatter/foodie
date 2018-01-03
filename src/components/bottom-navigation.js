@@ -7,7 +7,7 @@ import InterviewIcon from 'material-ui-icons/Today';
 
 export default class BottomNavigation extends React.Component {
     state = {
-        value: 0,
+        value: 1,
     };
 
     handleChange = (event, value) => {
@@ -18,10 +18,10 @@ export default class BottomNavigation extends React.Component {
         const styles = {
             section: {
                 width: 500,
-                backgroundColor: "#5D6465"
+                //backgroundColor: "#5D6465"
             },
             button: {
-                color: "white"
+                //color: "white"
             }
         };
         const {value} = this.state;

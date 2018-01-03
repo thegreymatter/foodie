@@ -8,7 +8,7 @@ class Header extends React.Component {
     render() {
         const style = {
             background: {
-                backgroundColor: "#696459",
+                backgroundColor: "#515151",
                 padding: 5,
             },
             container: {

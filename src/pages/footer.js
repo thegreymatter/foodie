@@ -6,10 +6,11 @@ class Footer extends React.Component {
     render() {
         const style = {
             background: {
-                backgroundColor: "#5D6465",
+                backgroundColor: "white",
                 position: "fixed",
                 bottom: "0px",
                 width: "100%"
+
             },
             container: {
                 flexFlow: "row",
