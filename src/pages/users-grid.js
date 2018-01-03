@@ -26,7 +26,7 @@ class UserGrid extends React.Component {
     onUserClick(user) {
         this.setState({
             snackBarOpen: true,
-            snackBarMessage: "Pressed " + user.firstName,
+            snackBarMessage: "Pressed " + user.name,
         });
     }
 
