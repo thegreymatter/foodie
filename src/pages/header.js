@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {updateFilter} from "../store/appData/actions";
 import {getDeliveredOrdersCount} from "../store/orders/reducer";
 import {getFloor} from "../store/appData/reducer";
+import {withRouter} from "react-router";
 
 class Header extends React.Component {
     render() {
@@ -27,7 +28,7 @@ class Header extends React.Component {
             logo: {
                 height: 60,
             },
-            delivered:{
+            delivered: {
                 marginLeft: 30,
                 marginTop: 15,
                 color: "#febc1d",
@@ -35,14 +36,16 @@ class Header extends React.Component {
                 textShadow: "2px 2px #000000"
             }
         };
-        console.log(this.props.orders);
 
         return (
             <div style={style.background}>
 
                 <div style={style.container}>
 
-                    <span style={style.item}>
+                    <span
+                        style={style.item}
+                        onClick={() => this.props.history.push('/')}
+                    >
                         <img src={logo} style={style.logo} alt="logo"/>
 
                     </span>
@@ -59,9 +62,9 @@ class Header extends React.Component {
                     </span>
 
                     <span style={style.delivered}>
-                        {this.props.floor === undefined?
+                        {this.props.floor === undefined ?
                             "Where are you?" :
-                            this.props.deliveredOrdersCount.length +  " Orders Delivered!"}
+                            this.props.deliveredOrdersCount.length + " Orders Delivered!"}
                     </span>
                 </div>
             </div>
@@ -77,5 +80,5 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps)(Header);
+export default withRouter(connect(mapStateToProps)(Header));
 

@@ -32,9 +32,4 @@ class HomePage extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-    };
-}
-
-export default connect(mapStateToProps)(HomePage);
+export default connect()(HomePage);

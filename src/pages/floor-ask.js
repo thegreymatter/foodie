@@ -11,7 +11,7 @@ const width = 200;
 class FloorAsk extends React.Component {
 
     redirect(path) {
-            this.props.history.push(path);
+        this.props.history.push(path);
     }
 
     render() {
