@@ -1,5 +1,6 @@
 import * as actionTypes from './action-types';
 import _ from 'lodash';
+import {sendDataToDatabase} from "../firebase/actions";
 
 export default (state = {}, action = {}) => {
     switch (action.type) {
@@ -22,5 +23,10 @@ export function getWaitingOrders(state) {
 }
 
 function isWaitingOrder(order, now){
-    return !order.notified && new Date(order.expiration) > now;
+    return new Date(order.expiration) > now;
+}
+
+export function getWaitingOrdersByUserId(state, userId) {
+    const waitingOrders = getWaitingOrders(state);
+    return  _.filter(waitingOrders, order => order.userId === userId);
 }

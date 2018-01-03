@@ -5,31 +5,12 @@ import {getWaitingUsers} from "../store/users/reducer";
 import UserCard from "../components/user-card";
 import SnackBar from "../components/snack-bar";
 import {validateUsers} from "../store/users/actions";
+const notifyUrl = "https://foodie-telegram-bot.herokuapp.com/notify?userId=";
 
-const initState = {
-    snackBarOpen: false,
-    snackBarMessage: "",
-};
+
 
 class UserGrid extends React.Component {
 
-    constructor() {
-        super();
-        this.state = initState;
-    }
-
-    handleClose = () => {
-        this.setState(initState);
-    };
-
-
-    onUserClick(user) {
-        //TODO report click to Telegram
-        this.setState({
-            snackBarOpen: true,
-            snackBarMessage: "Pressed " + user.name,
-        });
-    }
 
     render() {
         const styles = {
@@ -48,17 +29,9 @@ class UserGrid extends React.Component {
                 {_.map(this.props.users, user =>
                     <UserCard
                         key={user.id}
-                        name={user.name}
-                        searsId={user.searsId}
-                        onClick={() => this.onUserClick(user)}
+                        user={user}
                     />
                 )}
-
-                <SnackBar
-                    open={this.state.snackBarOpen}
-                    message={this.state.snackBarMessage}
-                    handleClose={this.handleClose}
-                />
             </div>
 
         );
