@@ -1,9 +1,7 @@
 import React from 'react';
 import {withRouter} from "react-router";
 import {connect} from "react-redux";
-import Card from "material-ui/Card/Card";
-import CardMedia from "material-ui/es/Card/CardMedia";
-import CardContent from "material-ui/es/Card/CardContent";
+import Card, {CardContent, CardMedia} from 'material-ui/Card';
 import imageThree from './floor-three.jpg'
 import imageFive from './floor-five.jpg'
 
