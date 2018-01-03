@@ -4,6 +4,7 @@ import SearchBox from "../components/search-box";
 import {connect} from 'react-redux';
 import {updateFilter} from "../store/appData/actions";
 import {getDeliveredOrdersCount} from "../store/orders/reducer";
+import {getFloor} from "../store/appData/reducer";
 
 class Header extends React.Component {
     render() {
@@ -47,15 +48,20 @@ class Header extends React.Component {
                     </span>
 
                     <span style={style.item}>
-                        <SearchBox
-                            hint="Search..."
-                            handleChange={(value) => {
-                                this.props.dispatch(updateFilter(value));
-                            }}/>
+                        {this.props.floor === undefined ? null :
+                            <SearchBox
+                                hint="Search..."
+                                handleChange={(value) => {
+                                    this.props.dispatch(updateFilter(value));
+                                }}/>
+
+                        }
                     </span>
 
                     <span style={style.delivered}>
-                        {this.props.deliveredOrdersCount.length} Orders Delivered!
+                        {this.props.floor === undefined?
+                            "Where are you?" :
+                            this.props.deliveredOrdersCount.length +  " Orders Delivered!"}
                     </span>
                 </div>
             </div>
@@ -66,6 +72,7 @@ class Header extends React.Component {
 function mapStateToProps(state) {
     return {
         deliveredOrdersCount: getDeliveredOrdersCount(state),
+        floor: getFloor(state),
     };
 }
 
