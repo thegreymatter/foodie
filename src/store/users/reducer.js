@@ -24,6 +24,7 @@ export function getWaitingUsers(state) {
 
     const waitingUsers = _.filter(users, user => _.some(waitingOrders, order => order.userId === user.id));
 
-    return filterUsers(state, waitingUsers);
+    const filteredUsers =  filterUsers(state, waitingUsers);
+    return _.sortBy(filteredUsers, user => user.name);
 
 }
