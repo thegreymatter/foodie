@@ -12,7 +12,7 @@ export default (state = "", action = {}) => {
 }
 
 // Selectors:
-function getFilter(state) {
+export function getFilter(state) {
     return state.filter;
 }
 
