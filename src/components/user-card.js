@@ -18,6 +18,8 @@ const initState = {
 
 const radius = 10;
 const width = 200;
+const disabledColor = "#DADADA";
+const notifiedColor = "#4cc912";
 
 class UserCard extends React.Component {
 
@@ -75,7 +77,7 @@ class UserCard extends React.Component {
                 maxWidth: width,
                 margin: 10,
                 borderRadius: radius,
-                backgroundColor: this.props.user.waiting ? (this.wasNotified.bind(this)() ? "#febc1d" : "white") : "#DADADA"
+                backgroundColor: this.props.user.waiting ? (this.wasNotified.bind(this)() ? notifiedColor : "white") : disabledColor
             },
             media: {
                 height: width,

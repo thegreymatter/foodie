@@ -15,17 +15,16 @@ class Header extends React.Component {
                 padding: 5,
             },
             container: {
-                // flexFlow: "row",
                 display: "flex",
-                // justifyContent: "space-around"
-            },
-            item: {
-                marginLeft: 30,
-                // display: "inlineBlock",
-                // width: "33%",
-                // textAlign: "center",
             },
             logo: {
+                marginLeft: 30,
+                cursor: "pointer",
+            },
+            search: {
+                marginLeft: 30,
+            },
+            logoImage: {
                 height: 60,
             },
             delivered: {
@@ -43,14 +42,14 @@ class Header extends React.Component {
                 <div style={style.container}>
 
                     <span
-                        style={style.item}
+                        style={style.logo}
                         onClick={() => this.props.history.push('/')}
                     >
-                        <img src={logo} style={style.logo} alt="logo"/>
+                        <img src={logo} style={style.logoImage} alt="logo"/>
 
                     </span>
 
-                    <span style={style.item}>
+                    <span style={style.search}>
                         {this.props.floor === undefined ? null :
                             <SearchBox
                                 hint="Search..."
