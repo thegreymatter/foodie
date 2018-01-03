@@ -3,10 +3,7 @@ import {connect} from 'react-redux';
 import _ from 'lodash';
 import {getWaitingUsers} from "../store/users/reducer";
 import UserCard from "../components/user-card";
-import SnackBar from "../components/snack-bar";
 import {validateUsers} from "../store/users/actions";
-const notifyUrl = "https://foodie-telegram-bot.herokuapp.com/notify?userId=";
-
 
 
 class UserGrid extends React.Component {

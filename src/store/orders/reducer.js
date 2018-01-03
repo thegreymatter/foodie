@@ -1,6 +1,5 @@
 import * as actionTypes from './action-types';
 import _ from 'lodash';
-import {sendDataToDatabase} from "../firebase/actions";
 
 export default (state = {}, action = {}) => {
     switch (action.type) {

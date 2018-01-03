@@ -1,6 +1,6 @@
 import * as actionTypes from './action-types';
 import {sendDataToDatabase} from "../firebase/actions";
-import {getOrdersByUserId, getWaitingOrdersByUserId} from "./reducer";
+import {getWaitingOrdersByUserId} from "./reducer";
 import _ from 'lodash';
 
 export function receiveOrders(orders) {

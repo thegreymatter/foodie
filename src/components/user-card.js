@@ -73,7 +73,7 @@ class UserCard extends React.Component {
             },
         });
 
-        this.props.dispatch(markOrdersAsNotified(this.prop.user.user));
+        this.props.dispatch(markOrdersAsNotified(this.props.user));
     }
 
     render() {
