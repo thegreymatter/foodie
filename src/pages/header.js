@@ -3,7 +3,7 @@ import logo from './Logo.png'
 import SearchBox from "../components/search-box";
 import {connect} from 'react-redux';
 import {updateFilter} from "../store/filter/actions";
-import {getDeliveredOrdersCount, getOrders} from "../store/orders/reducer";
+import {getDeliveredOrdersCount} from "../store/orders/reducer";
 
 class Header extends React.Component {
     render() {
