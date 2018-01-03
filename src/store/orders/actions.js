@@ -22,7 +22,7 @@ export function markOrdersAsNotified(user) {
     return async function markOrdersAsNotified(dispatch, getState) {
         const minute = 60 * 1000;
         const expiration = new Date();
-        expiration.setTime(expiration.getTime() + 10 * 1000);
+        expiration.setTime(expiration.getTime() + 1 * minute); // TODO change expiration time
         const userOrders = getWaitingOrdersByUserId(getState(), user.id);
         _.map(userOrders, order => {
                 if (!order.notified) {

@@ -18,9 +18,6 @@ export function getFilter(state) {
 
 export function filterUsers(state, users){
     const filter = getFilter(state);
-    if(filter === "")
-        return users;
 
-    return _.filter(users, user => user.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1);
 }
 

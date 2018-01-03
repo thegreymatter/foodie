@@ -15,8 +15,7 @@ export function getOrders(state) {
     return state.orders;
 }
 
-export function getWaitingOrders(state) {
-    const orders = getOrders(state);
+export function getWaitingOrders(orders) {
     const now = new Date();
     return _.filter(orders, order => isWaitingOrder(order, now));
 }
@@ -26,6 +25,6 @@ function isWaitingOrder(order, now){
 }
 
 export function getWaitingOrdersByUserId(state, userId) {
-    const waitingOrders = getWaitingOrders(state);
+    const waitingOrders = getWaitingOrders(getOrders(state));
     return  _.filter(waitingOrders, order => order.userId === userId);
 }
