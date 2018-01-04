@@ -27,7 +27,10 @@ class UserCard extends React.Component {
             colors: [Colors.notified, Colors.counter, Colors.firework1]
         });
 
-        console.log(notifyUrl + this.props.user.id + "&floor=" + this.props.floor);
+        if (this.wasNotified.bind(this)()) { //Send message only once
+            return;
+        }
+
         fetch(notifyUrl + this.props.user.id + "&floor=" + this.props.floor, {
             mode: 'no-cors',
 
