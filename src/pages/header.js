@@ -16,13 +16,17 @@ class Header extends React.Component {
                 padding: 5,
             },
             container: {
+                flexFlow: "row",
                 display: "flex",
+                justifyContent: "space-between"
             },
             logo: {
                 marginLeft: 20,
                 cursor: "pointer",
             },
             name: {
+                verticalAlign: "top",
+                display:"inline-block",
                 marginLeft: 15,
                 marginTop: 15,
                 color: Color.counter,
@@ -30,13 +34,13 @@ class Header extends React.Component {
                 textShadow: "2px 2px #000000"
             },
             search: {
-                marginLeft: 80,
+                // marginLeft: 200,
             },
             logoImage: {
                 height: 60,
             },
             delivered: {
-                marginLeft: 50,
+                marginRight: 20,
                 marginTop: 15,
                 color: Color.counter,
                 fontSize: 30,
@@ -44,25 +48,32 @@ class Header extends React.Component {
             }
         };
 
+        const askFloorPage = this.props.floor === undefined;
+
         return (
             <div style={style.background}>
 
                 <div style={style.container}>
 
-                    <span
-                        style={style.logo}
-                        onClick={() => this.props.history.push('/')}
-                    >
-                        <img src={logo} style={style.logoImage} alt="logo"/>
+                    <span>
+                        <span
+                            style={style.logo}
+                            onClick={() => {
+                                this.props.history.push('/');
+                                this.props.dispatch(updateFilter(""));
+                            }}
+                        >
+                            <img src={logo} style={style.logoImage} alt="logo"/>
 
-                    </span>
+                        </span>
 
-                    <span style={style.name}>
-                        {this.props.floor === undefined ? null : "Foodie"}
+                        <span style={style.name}>
+                            {askFloorPage ? null : "Foodie"}
+                        </span>
                     </span>
 
                     <span style={style.search}>
-                        {this.props.floor === undefined ? null :
+                        {askFloorPage ? null :
                             <SearchBox
                                 hint="Search..."
                                 handleChange={(value) => {
@@ -73,7 +84,7 @@ class Header extends React.Component {
                     </span>
 
                     <span style={style.delivered}>
-                        {this.props.floor === undefined ?
+                        {askFloorPage ?
                             "Where am I?" :
                             this.props.deliveredOrdersCount.length + " Orders Delivered!"}
                     </span>

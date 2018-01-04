@@ -36,3 +36,8 @@ export function fetchData(collectionName, actionCallback) {
 export function sendDataToDatabase(collectionPath, value) {
     return firebase.database().ref(collectionPath).set(value);
 }
+
+
+export function pushDataToDatabase(collectionPath, value) {
+    return firebase.database().ref(collectionPath).push(value);
+}

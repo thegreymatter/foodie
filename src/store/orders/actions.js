@@ -1,5 +1,5 @@
 import * as actionTypes from './action-types';
-import {sendDataToDatabase} from "../firebase/actions";
+import {pushDataToDatabase, sendDataToDatabase} from "../firebase/actions";
 import {getWaitingOrdersByUserId} from "./reducer";
 import _ from 'lodash';
 
@@ -20,8 +20,9 @@ export function receiveOrders(orders) {
 export function markOrdersAsNotified(user) {
     return async function markOrdersAsNotified(dispatch, getState) {
         const minute = 60 * 1000;
+        const hour = 60 * minute;
         const expiration = new Date();
-        expiration.setTime(expiration.getTime() + 5 * minute);
+        expiration.setTime(expiration.getTime() + 3* hour);
         const userOrders = getWaitingOrdersByUserId(getState(), user.id);
         _.map(userOrders, order => {
                 if (!order.notified) {
@@ -33,4 +34,26 @@ export function markOrdersAsNotified(user) {
             }
         );
     }
+}
+
+export function createNewOrder(user) {
+    const newOrder = {
+        userId: user.id,
+        orderTime: new Date().toJSON(),
+        notified: false,
+        expiration: getExpiration().toJSON(),
+        name: user.name,
+    };
+
+    pushDataToDatabase('/orders', newOrder);
+
+}
+
+
+function getExpiration() {
+    const expirationInHours = 3;
+    const expirationDate = new Date();
+    expirationDate.setTime(expirationDate.getTime() + expirationInHours * 60 * 60 * 1000);
+
+    return expirationDate;
 }

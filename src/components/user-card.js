@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card, {CardContent, CardMedia} from 'material-ui/Card';
-import {markOrdersAsNotified} from "../store/orders/actions";
+import {createNewOrder, markOrdersAsNotified} from "../store/orders/actions";
 import fetch from 'isomorphic-fetch';
 import _ from 'lodash';
 import {connect} from "react-redux";
@@ -17,6 +17,12 @@ const imageSize = 200;
 class UserCard extends React.Component {
 
     wasNotified() {
+        // If has no waiting order, create one.
+        if(this.props.usersWaitingOrders.length === 0){
+            createNewOrder(this.props.user);
+            return false;
+        }
+
         return _.some(this.props.usersWaitingOrders, order => order.notified === true)
     }
 
