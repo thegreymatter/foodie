@@ -19,17 +19,24 @@ class Header extends React.Component {
                 display: "flex",
             },
             logo: {
-                marginLeft: 30,
+                marginLeft: 20,
                 cursor: "pointer",
             },
+            name: {
+                marginLeft: 15,
+                marginTop: 15,
+                color: Color.counter,
+                fontSize: 30,
+                textShadow: "2px 2px #000000"
+            },
             search: {
-                marginLeft: 30,
+                marginLeft: 80,
             },
             logoImage: {
                 height: 60,
             },
             delivered: {
-                marginLeft: 30,
+                marginLeft: 50,
                 marginTop: 15,
                 color: Color.counter,
                 fontSize: 30,
@@ -50,6 +57,10 @@ class Header extends React.Component {
 
                     </span>
 
+                    <span style={style.name}>
+                        {this.props.floor === undefined ? null : "Foodie"}
+                    </span>
+
                     <span style={style.search}>
                         {this.props.floor === undefined ? null :
                             <SearchBox
@@ -63,7 +74,7 @@ class Header extends React.Component {
 
                     <span style={style.delivered}>
                         {this.props.floor === undefined ?
-                            "Where are you?" :
+                            "Where am I?" :
                             this.props.deliveredOrdersCount.length + " Orders Delivered!"}
                     </span>
                 </div>

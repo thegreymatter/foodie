@@ -35,7 +35,7 @@ export default class SearchBox extends React.Component {
             textField: {
                 marginTop: 10,
                 // marginLeft: 50,
-                width: 500,
+                width: 400,
                 fontColor: "white",
             },
             underline: {
