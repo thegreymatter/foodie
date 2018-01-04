@@ -26,7 +26,7 @@ export default class SearchBox extends React.Component {
             input: {
                 WebkitTextFillColor: "inherit",
                 color: "white",
-                fontSize: 28,
+                fontSize: 32,
 
             },
             // hintStyle: {
