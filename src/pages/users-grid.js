@@ -12,7 +12,7 @@ class UserGrid extends React.Component {
     componentDidMount() {
         setInterval(() => {
             this.forceUpdate();
-        }, 1000); //TODO update refresh time
+        }, 1000);
     }
 
 
