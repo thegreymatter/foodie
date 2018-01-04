@@ -23,16 +23,19 @@ class UserGrid extends React.Component {
         let result;
 
         const filter = this.props.filter;
-        if (filter === "") { //No filter
-            result = _.filter(users, user => _.some(waitingOrders, order => order.userId === user.id));
+        result = _.filter(users, user => _.some(waitingOrders, order => order.userId === user.id));
 
-            //Mark waiting users
-            _.map(result, user => {
-                user.waiting = true;
-            });
-        } else { //Has filter - search in all users
-            result = _.filter(this.props.users, user => user.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1);
-
+        //Mark waiting users
+        _.map(result, user => {
+            user.waiting = true;
+        });
+        if (filter !== "") { //Has filter - search in all users
+            const allowSearchInAll = false;
+            if (allowSearchInAll) {
+                result = _.filter(users, user => user.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1);
+            } else {
+                result = _.filter(result, user => user.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1);
+            }
             //Mark waiting users
             _.map(result, user => {
                 user.waiting = _.some(waitingOrders, order => order.userId === user.id);
