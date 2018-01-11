@@ -20,7 +20,7 @@ export function receiveOrders(orders) {
                         for (const userKey in users) {
                             if (users[userKey].searsId === orders[key].searsId) {
                                 orders[key].userId = userKey;
-                                sendDataToDatabase('orders/' + key + "/userId", userKey);
+                                sendDataToDatabase('orders/' + key + "/userId",parseInt(userKey));
                             }
                         }
                     }
