@@ -3,14 +3,30 @@ import {pushDataToDatabase, sendDataToDatabase} from "../firebase/actions";
 import {getWaitingOrdersByUserId} from "./reducer";
 import _ from 'lodash';
 import {getUsers} from "../users/reducer";
-import {getEmployees} from "../employees/reducer";
 
 export function receiveOrders(orders) {
-    return async function receiveOrdersAndUpdateChatId(dispatch, getState) {
+    return async function receiveOrdersAndUpdateChatId(dispatch) {
         for (const key in orders) {
             if (orders.hasOwnProperty(key)) { //Iterate over all orders
                 orders[key].key = key;
+            }
+        }
 
+
+        await dispatch({
+            type: actionTypes.RECEIVE_ORDERS,
+            payload: orders,
+        });
+
+        dispatch(fixOrderId(orders));
+    }
+}
+
+function fixOrderId(orders) {
+    return async function receiveOrdersAndUpdateChatId(dispatch, getState) {
+
+        for (const key in orders) {
+            if (orders.hasOwnProperty(key)) { //Iterate over all orders
 
                 if (!orders[key].hasOwnProperty("userId")) {
                     const users = getUsers(getState());
@@ -20,19 +36,13 @@ export function receiveOrders(orders) {
                         for (const userKey in users) {
                             if (users[userKey].searsId === orders[key].searsId) {
                                 orders[key].userId = userKey;
-                                sendDataToDatabase('orders/' + key + "/userId",parseInt(userKey));
+                                sendDataToDatabase('orders/' + key + "/userId", parseInt(userKey));
                             }
                         }
                     }
                 }
             }
         }
-
-
-        dispatch ({
-            type: actionTypes.RECEIVE_ORDERS,
-            payload: orders,
-        });
     }
 }
 
