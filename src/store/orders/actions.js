@@ -2,20 +2,40 @@ import * as actionTypes from './action-types';
 import {pushDataToDatabase, sendDataToDatabase} from "../firebase/actions";
 import {getWaitingOrdersByUserId} from "./reducer";
 import _ from 'lodash';
+import {getUsers} from "../users/reducer";
+import {getEmployees} from "../employees/reducer";
 
 export function receiveOrders(orders) {
-    for (const key in orders) {
-        if (orders.hasOwnProperty(key)) {
-            orders[key].key = key;
+    return async function receiveOrdersAndUpdateChatId(dispatch, getState) {
+        for (const key in orders) {
+            if (orders.hasOwnProperty(key)) { //Iterate over all orders
+                orders[key].key = key;
+
+
+                if (!orders[key].hasOwnProperty("userId")) {
+                    const users = getUsers(getState());
+                    if (users === {}) {
+                        console.error("no users")
+                    } else {
+                        for (const userKey in users) {
+                            if (users[userKey].searsId === orders[key].searsId) {
+                                orders[key].userId = userKey;
+                                sendDataToDatabase('orders/' + key + "/userId", userKey);
+                            }
+                        }
+                    }
+                }
+            }
         }
+
+
+        dispatch ({
+            type: actionTypes.RECEIVE_ORDERS,
+            payload: orders,
+        });
     }
-
-
-    return {
-        type: actionTypes.RECEIVE_ORDERS,
-        payload: orders,
-    };
 }
+
 
 export function markOrdersAsNotified(user) {
     return async function markOrdersAsNotified(dispatch, getState) {

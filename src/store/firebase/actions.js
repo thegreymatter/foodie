@@ -16,9 +16,9 @@ export function initFirebase() {
     return async function signInRequest(dispatch) {
 
        await firebase.initializeApp(firebaseConfig);
-        dispatch(fetchData('orders', receiveOrders));
-        await dispatch(fetchData('users', receiveUsers));
         await dispatch(fetchData('employees', receiveEmployees));
+        await dispatch(fetchData('users', receiveUsers));
+        await dispatch(fetchData('orders', receiveOrders));
     }
 }
 

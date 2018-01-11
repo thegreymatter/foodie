@@ -21,7 +21,6 @@ class HomePage extends React.Component {
             );
         }
 
-        console.log(this.props.floor);
         this.props.dispatch(updateFloor(this.props.floor));
 
         return (
