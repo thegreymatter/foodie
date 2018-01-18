@@ -18,7 +18,7 @@ class UserCard extends React.Component {
 
     wasNotified() {
         // If has no waiting order, create one.
-        if(this.props.usersWaitingOrders.length === 0){
+        if (this.props.usersWaitingOrders.length === 0) {
             createNewOrder(this.props.user);
             return false;
         }
@@ -32,6 +32,35 @@ class UserCard extends React.Component {
             y: window.innerHeight / 2,
             colors: [Colors.notified, Colors.counter, Colors.firework1]
         });
+
+        setTimeout(() =>
+            fireworks({
+                x: window.innerWidth / 4,
+                y: window.innerHeight / 4,
+                colors: [Colors.notified, Colors.counter, Colors.firework1]
+            }), 100);
+
+        setTimeout(() =>
+            fireworks({
+                x: 3 * window.innerWidth / 4,
+                y: window.innerHeight / 4,
+                colors: [Colors.notified, Colors.counter, Colors.firework1]
+            }), 200);
+
+        setTimeout(() =>
+            fireworks({
+                x: window.innerWidth / 5,
+                y: 2*window.innerHeight / 3,
+                colors: [Colors.notified, Colors.counter, Colors.firework1]
+            }), 300);
+
+        setTimeout(() =>
+            fireworks({
+                x: 4 * window.innerWidth / 5,
+                y:2*window.innerHeight / 3,
+                colors: [Colors.notified, Colors.counter, Colors.firework1]
+            }), 400);
+
 
         if (this.wasNotified.bind(this)()) { //Send message only once
             return;
@@ -49,8 +78,6 @@ class UserCard extends React.Component {
         });
 
         this.props.dispatch(markOrdersAsNotified(this.props.user));
-
-
     }
 
     render() {
