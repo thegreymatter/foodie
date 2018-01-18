@@ -34,7 +34,7 @@ function fixOrderId(orders) {
                         console.error("no users")
                     } else {
                         for (const userKey in users) {
-                            if (users[userKey].searsId === orders[key].searsId) {
+                            if (users[userKey].searsId.toLowerCase() === orders[key].searsId.toLowerCase()) {
                                 orders[key].userId = userKey;
                                 sendDataToDatabase('orders/' + key + "/userId", parseInt(userKey));
                             }
