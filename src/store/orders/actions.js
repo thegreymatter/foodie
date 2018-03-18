@@ -51,7 +51,7 @@ export function markOrdersAsNotified(user) {
     return async function markOrdersAsNotified(dispatch, getState) {
         const minute = 60 * 1000;
         const expiration = new Date();
-        expiration.setTime(expiration.getTime() + 5 * minute);
+        expiration.setTime(expiration.getTime() + 10 * minute);
         const userOrders = getWaitingOrdersByUserId(getState(), user.id);
         _.map(userOrders, order => {
                 if (!order.notified) {
