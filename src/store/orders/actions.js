@@ -34,9 +34,13 @@ function fixOrderId(orders) {
                         console.error("no users")
                     } else {
                         for (const userKey in users) {
-                            if (users[userKey].searsId.toLowerCase() === orders[key].searsId.toLowerCase()) {
-                                orders[key].userId = userKey;
-                                sendDataToDatabase('orders/' + key + "/userId", parseInt(userKey));
+                            try{
+                                if (users[userKey].searsId.toLowerCase() === orders[key].searsId.toLowerCase()) {
+                                    orders[key].userId = userKey;
+                                    sendDataToDatabase('orders/' + key + "/userId", parseInt(userKey));
+                                }
+                            }catch(e) {
+                                console.error("Error in fixing order id", e);
                             }
                         }
                     }
