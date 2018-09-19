@@ -8,6 +8,8 @@ import {getFloor} from "../store/appData/reducer";
 import {withRouter} from "react-router";
 import Color from "../colors";
 
+const shouldDisplaySearch = false;
+
 class Header extends React.Component {
     render() {
         const style = {
@@ -26,7 +28,7 @@ class Header extends React.Component {
             },
             name: {
                 verticalAlign: "top",
-                display:"inline-block",
+                display: "inline-block",
                 marginLeft: 15,
                 marginTop: 15,
                 color: Color.counter,
@@ -72,7 +74,7 @@ class Header extends React.Component {
                         </span>
                     </span>
 
-                    <span style={style.search}>
+                    {shouldDisplaySearch && <span style={style.search}>
                         {askFloorPage ? null :
                             <SearchBox
                                 hint="Search..."
@@ -81,7 +83,7 @@ class Header extends React.Component {
                                 }}/>
 
                         }
-                    </span>
+                    </span>}
 
                     <span style={style.delivered}>
                         {askFloorPage ?
