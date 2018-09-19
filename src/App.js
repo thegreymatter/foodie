@@ -1,18 +1,32 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Header from './pages/header'
-// import Footer from './pages/footer'
+import {connect} from "react-redux";
+import {isLoggedIn} from "./store/firebase/reducer";
+import LoginPage from "./pages/LoginPage";
 
-class App extends Component {
-    render() {
-        return (
-            <div>
-                <Header/>
-                {this.props.children}
+function getAppBody(props) {
+    if (props.isLoggedIn)
+        return props.children;
 
-                {/*<Footer/>*/}
-            </div>
-        );
+    if (props.isLoggedIn === undefined) {
+        return <div/>;
     }
+    return <LoginPage/>;
 }
 
-export default App;
+function App(props) {
+    return (
+        <div>
+            <Header/>
+            {getAppBody(props)}
+        </div>
+    );
+}
+
+function mapStateToProps(state) {
+    return {
+        isLoggedIn: isLoggedIn(state),
+    };
+}
+
+export default connect(mapStateToProps)(App);
