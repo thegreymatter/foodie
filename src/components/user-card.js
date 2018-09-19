@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card, {CardContent, CardMedia} from 'material-ui/Card';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
 import {createNewOrder, markOrdersAsNotified} from "../store/orders/actions";
 import fetch from 'isomorphic-fetch';
 import _ from 'lodash';

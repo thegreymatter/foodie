@@ -1,8 +1,9 @@
 import React from 'react';
-import BottomNavigationSection, {BottomNavigationButton} from 'material-ui/BottomNavigation';
-import FoodIcon from 'material-ui-icons/Restaurant';
-import PackagesIcon from 'material-ui-icons/MarkunreadMailbox';
-import InterviewIcon from 'material-ui-icons/Today';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import FoodIcon from '@material-ui/icons/Restaurant';
+import PackagesIcon from '@material-ui/icons/MarkunreadMailbox';
+import InterviewIcon from '@material-ui/icons/Today';
 
 
 export default class BottomNavigation extends React.Component {
@@ -27,31 +28,31 @@ export default class BottomNavigation extends React.Component {
         const {value} = this.state;
 
         return (
-            <BottomNavigationSection
+            <BottomNavigation
                 value={value}
                 onChange={this.handleChange}
                 showLabels
                 style={styles.section}
             >
-                <BottomNavigationButton
+                <BottomNavigationAction
                     label="Packages"
                     icon={<PackagesIcon/>}
                     style={styles.button}
                 />
 
-                <BottomNavigationButton
+                <BottomNavigationAction
                     label="Food"
                     icon={<FoodIcon/>}
                     style={styles.button}
                 />
                 
-                <BottomNavigationButton
+                <BottomNavigationAction
                     label="Interview"
                     icon={<InterviewIcon/>}
                     style={styles.button}
                 />
 
-            </BottomNavigationSection>
+            </BottomNavigation>
         );
     }
 }

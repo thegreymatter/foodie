@@ -1,7 +1,8 @@
 import React from 'react';
 import {withRouter} from "react-router";
-import {connect} from "react-redux";
-import Card, {CardContent, CardMedia} from 'material-ui/Card';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
 import imageThree from './floor-three.jpg'
 import imageFive from './floor-five.jpg'
 
@@ -80,8 +81,4 @@ class FloorAsk extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {};
-}
-
-export default withRouter(connect(mapStateToProps)(FloorAsk));
+export default withRouter(FloorAsk);
