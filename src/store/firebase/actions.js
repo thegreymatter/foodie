@@ -1,8 +1,10 @@
 import {receiveUsers} from '../users/actions'
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
 import {receiveOrders} from "../orders/actions";
 import {receiveEmployees} from "../employees/actions";
 import * as actionTypes from './action-types';
+import "firebase/auth";
+import "firebase/database";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAgz4f_lRZGVgE43U3oMc4KQFaYXkXJdyQ",
