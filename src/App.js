@@ -16,7 +16,7 @@ function App(props) {
     return (
         <div>
             <Header/>
-            
+
             <AppBody isLoggedIn={props.isLoggedIn}>
                 {props.children}
             </AppBody>
