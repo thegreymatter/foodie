@@ -30,19 +30,18 @@ export function initFirebase() {
         return promise;
     }
 }
-//
-// export function signInWithGoogle(errorCallback) {
-//     return function signInRequest(dispatch) {
-//         const provider = new firebase.auth.GoogleAuthProvider();
-//         firebase.auth().signInWithRedirect(provider).then(function (result) {
-//             dispatch(afterSignedIn(result.user));
-//         }).catch(function (error) {
-//             errorCallback(error.message);
-//             console.error(error);
-//         });
-//     }
-// }
-//
+
+export function signInWithGoogle() {
+    return function signInRequest(dispatch) {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        firebase.auth().signInWithRedirect(provider).then(function (result) {
+            dispatch(afterSignedIn(result.user));
+        }).catch(function (error) {
+            console.error(error);
+        });
+    }
+}
+
 // export function signInRequest(email, password, errorCallback) {
 //     return function signInRequest(dispatch, getState) {
 //         return firebase.auth().signInWithEmailAndPassword(email, password)

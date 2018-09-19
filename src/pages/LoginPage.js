@@ -1,6 +1,29 @@
 import React from 'react';
+import SignInWithGoogleButtonContainer from "./google-sign-in/SignInWithGoogleButtonContainer";
+import {Paper} from "material-ui";
 
+export default function LoginPage() {
+    const style = {
+        div: {
+            textAlign: "center",
+            margin: 20,
+        },
+        pageTitle: {
+            fontSize: 24,
+            marginBottom: 10,
+        },
+    };
 
-export default function LoginPage(){
-    return <div>Login Page</div>
+    return (
+        <div style={style.div}>
+
+            <div style={style.pageTitle}>
+                Please login to Foodie
+            </div>
+
+            <SignInWithGoogleButtonContainer/>
+
+        </div>
+    );
+
 }
