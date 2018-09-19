@@ -1,8 +1,4 @@
-// import * as actionTypes from './action-types';
-import _ from 'lodash';
-// import Immutable from 'seamless-immutable';
-// import {getOrders} from "../orders/selectors";
-import {getUsers} from "../users/reducer";
+import * as actionTypes from './action-types';
 
 const initialState = {
     loggedIn: undefined,
@@ -13,21 +9,15 @@ const initialState = {
 
 export default function (state = initialState, action = {}) {
     switch (action.type) {
-        // case actionTypes.LOGGED_IN:
-        //     return Immutable.merge(state,{
-        //         loggedIn: true,
-        //         userId: action.userId,
-        //         displayName: action.displayName,
-        //         photoURL: action.photoURL,
-        //     });
-        //
-        // case actionTypes.LOGGED_OUT:
-        //     return Immutable.merge(state,{
-        //         loggedIn: false,
-        //         userId: undefined,
-        //         displayName: "",
-        //         photoURL: "",
-        //     });
+        case actionTypes.LOGGED_IN:
+            return {
+                loggedIn: true,
+            };
+
+        case actionTypes.LOGGED_OUT:
+            return {
+                loggedIn: false,
+            };
 
         default:
             return state;
@@ -36,10 +26,4 @@ export default function (state = initialState, action = {}) {
 
 export function isLoggedIn(state) {
     return state.firebase.loggedIn;
-}
-
-export function isFetching(state){
-    const fetchingUsers = _.isEmpty(getUsers(state));
-
-    return fetchingUsers ;
 }
