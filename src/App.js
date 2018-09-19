@@ -1,10 +1,8 @@
 import React from 'react';
 import Header from './pages/header'
-import {connect} from "react-redux";
-import {isLoggedIn} from "./store/firebase/reducer";
 import LoginPage from "./pages/LoginPage";
 
-function getAppBody(props) {
+function AppBody(props) {
     if (props.isLoggedIn)
         return props.children;
 
@@ -18,15 +16,12 @@ function App(props) {
     return (
         <div>
             <Header/>
-            {getAppBody(props)}
+            
+            <AppBody isLoggedIn={props.isLoggedIn}>
+                {props.children}
+            </AppBody>
         </div>
     );
 }
 
-function mapStateToProps(state) {
-    return {
-        isLoggedIn: isLoggedIn(state),
-    };
-}
-
-export default connect(mapStateToProps)(App);
+export default App;

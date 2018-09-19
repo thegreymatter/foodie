@@ -1,6 +1,5 @@
 import React from 'react';
 import SignInWithGoogleButtonContainer from "./google-sign-in/SignInWithGoogleButtonContainer";
-import {Paper} from "material-ui";
 
 export default function LoginPage() {
     const style = {

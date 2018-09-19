@@ -2,9 +2,6 @@ import * as actionTypes from './action-types';
 
 const initialState = {
     loggedIn: undefined,
-    userId: undefined,
-    displayName: "",
-    photoURL: "",
 };
 
 export default function (state = initialState, action = {}) {

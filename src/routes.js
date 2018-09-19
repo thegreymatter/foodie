@@ -1,19 +1,19 @@
 import React from 'react';
 import {Router, Route} from 'react-router';
 import {createHashHistory} from 'history';
-
 import App from './App'
 import HomePage from "./pages/home-page";
+import {isLoggedIn} from "./store/firebase/reducer";
+import {connect} from "react-redux";
 
 const history = createHashHistory();
 
 class Root extends React.Component {
 
-
     render() {
         return (
             <Router history={history}>
-                <App>
+                <App isLoggedIn={this.props.isLoggedIn}>
                     <Route exact path="/" component={(props) =>
                         <HomePage {...props}/>
                     }/>
@@ -29,5 +29,10 @@ class Root extends React.Component {
     }
 }
 
+function mapStateToProps(state) {
+    return {
+        isLoggedIn: isLoggedIn(state),
+    };
+}
 
-export default Root;
+export default connect(mapStateToProps)(Root);
