@@ -7,6 +7,7 @@ import {getDeliveredOrdersCount} from "../store/orders/reducer";
 import {getFloor} from "../store/appData/reducer";
 import {withRouter} from "react-router";
 import Color from "../colors";
+import {signOutRequest} from '../store/firebase/actions';
 
 const shouldDisplaySearch = false;
 
@@ -86,7 +87,7 @@ class Header extends React.Component {
                         }
                     </span>}
 
-                    <span style={style.delivered}>
+                    <span style={style.delivered} onClick={this.props.signOut}>
                         {askFloorPage ?
                             "Where am I?" :
                             this.props.deliveredOrdersCount.length + " Orders Delivered!"}
@@ -104,6 +105,12 @@ function mapStateToProps(state) {
     };
 }
 
+function mapDispatchToProps(dispatch){
+    return {
+        signOut: () => dispatch(signOutRequest())
+    }
+}
 
-export default withRouter(connect(mapStateToProps)(Header));
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));
 

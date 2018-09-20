@@ -5,6 +5,7 @@ import {receiveEmployees} from "../employees/actions";
 import * as actionTypes from './action-types';
 import "firebase/auth";
 import "firebase/database";
+import {isLoggedIn} from './reducer';
 
 const firebaseConfig = {
     apiKey: "AIzaSyAgz4f_lRZGVgE43U3oMc4KQFaYXkXJdyQ",
@@ -73,4 +74,19 @@ export function sendDataToDatabase(collectionPath, value) {
 
 export function pushDataToDatabase(collectionPath, value) {
     return firebase.database().ref(collectionPath).push(value);
+}
+
+export function signOutRequest() {
+    return async function signInRequest(dispatch, getState) {
+        if (!isLoggedIn(getState()))
+            return;
+
+        firebase.auth().signOut()
+            .then(() => {
+                dispatch({type: actionTypes.LOGGED_OUT})
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+    }
 }
