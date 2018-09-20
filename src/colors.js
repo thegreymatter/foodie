@@ -1,9 +1,9 @@
 export default {
-    background: "#DADADA",
-    notWaiting: "#DADADA",
-    notified: "#4eb61e",
-    header: "#515151",
-    counter: "#febc1d",
+    background: "#D8D8D8",
+    notWaiting: "#D8D8D8",
+    notified: "#7ED321",
+    header: "#242E42",
+    counter: "#FFAC66",
     white: "white",
 
     firework1: "#cc3333",

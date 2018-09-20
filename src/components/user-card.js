@@ -93,7 +93,8 @@ class UserCard extends React.Component {
                 maxWidth: imageSize,
                 margin: 10,
                 borderRadius: radius,
-                backgroundColor: this.props.user.waiting ? (this.wasNotified.bind(this)() ? Colors.notified : Colors.white) : Colors.notWaiting
+                backgroundColor: this.props.user.waiting ? (this.wasNotified.bind(this)() ? Colors.notified : Colors.white) : Colors.notWaiting,
+
             },
             media: {
                 height: imageSize,

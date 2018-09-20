@@ -30,23 +30,24 @@ class Header extends React.Component {
                 verticalAlign: "top",
                 display: "inline-block",
                 marginLeft: 15,
-                marginTop: 15,
+                marginTop: 7,
                 color: Color.counter,
-                fontSize: 30,
-                textShadow: "2px 2px #000000"
+                fontSize: 27,
+
+               // textShadow: "2px 2px #000000"
             },
             search: {
                 // marginLeft: 200,
             },
             logoImage: {
-                height: 60,
+                height: 40,
             },
             delivered: {
                 marginRight: 20,
-                marginTop: 15,
+                marginTop: 7,
                 color: Color.counter,
-                fontSize: 30,
-                textShadow: "2px 2px #000000"
+                fontSize: 27,
+                //textShadow: "2px 2px #000000"
             }
         };
 
